@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile URL Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(188deg, #eceae500, #e46a6a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color : black;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            color: black;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: revert;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 186, 8, 0.8);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color:#b83030e6;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin : 5px 0;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff9100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Your Details</h2>
+        <form method="post" action="/register" th:object="${user}">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" th:field="*{name}" placeholder="Enter your name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" th:field="*{email}" placeholder="Enter any email in email format" required>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+            <div class="input-group">
+                <label for="codechef_username">CodeChef Username</label>
+                <input type="text" id="codechef_username" name="codechef_username" th:field="*{codechef_username}" placeholder="Enter your profile username">
+            </div>
+            <div class="input-group">
+                <label for="codeforces_username">CodeForces Username</label>
+                <input type="text" id="codeforces_username" name="codeforces_username" th:field="*{codeforces_username}" placeholder="Enter your profile username">
+            </div>
+            <div class="input-group">
+                <label for="leetcode_username">LeetCode Username</label>
+                <input type="text" id="leetcode_username" name="leetcode_username" th:field="*{leetcode_username}" placeholder="Enter your profile username">
+            </div>
+            <button type="submit" class="submit-btn">Register</button>
+            <button type="button" class="submit-btn" onclick="window.location.href='/login'">Login</button>
+        </form>
+    </div>
+</body>
+</html>
